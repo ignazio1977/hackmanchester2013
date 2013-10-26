@@ -2,7 +2,7 @@ package com.github.ignazio1977.hackmetro.model;
 
 import com.google.common.base.*;
 
-public class Spot {
+public class Spot implements Location{
 	private Optional<Double> longitude = Optional.absent();
 	private Optional<Double> latitude = Optional.absent();
 
