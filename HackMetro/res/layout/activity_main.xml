@@ -1,23 +1,47 @@
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <!--
-    This title strip will display the currently visible page title, as well as the page
-    titles for adjacent pages.
-    -->
-
-    <android.support.v4.view.PagerTitleStrip
-        android:id="@+id/pager_title_strip"
-        android:layout_width="match_parent"
+   <TextView
+       	android:id="@+id/journey_details_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="#33b5e5"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp"
-        android:textColor="#fff" />
+        android:text="@string/journey_details" />
+   
+    <EditText
+        android:id="@+id/from"
+        android:layout_width="272dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/from" />
+    
+    <EditText
+        android:id="@+id/to"
+        android:layout_width="272dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/to" />
 
-</android.support.v4.view.ViewPager>
+  <!--   <Spinner
+        android:id="@+id/timmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:hint="@string/select_time"/> -->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getJourneys"
+        android:text="@string/button_get_journeys" />
+
+   <!--  <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_hello" /> -->
+
+</LinearLayout>
