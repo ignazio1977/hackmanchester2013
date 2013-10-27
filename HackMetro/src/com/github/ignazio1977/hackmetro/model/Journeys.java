@@ -38,4 +38,13 @@ public class Journeys {
 		return journeys;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder b=new StringBuilder();
+		for(Journey j:journeys) {
+			b.append(j).append("\n");
+		}
+		return b.toString();
+	}
+	
 }

@@ -7,17 +7,23 @@ import java.util.List;
 public class Journey {
 	private final List<Hop> hops = new ArrayList<Hop>();
 
-	public void addHop(Hop hop) {
-		hops.add(hop);
+	/**Add a hop. Insertion happens at the top of the list, so the first hop added is the last hop to be followed.*/
+	public void addFirstHop(Hop hop) {
+		hops.add(0,hop);
 	}
 
 	/** @return all the hops in this journey. */
-	public Iterable<Hop> getHops() {
+	public List<Hop> getHops() {
 		return hops;
 	}
 
 	/** @return the number of hops in this journey. */
 	public int size() {
 		return hops.size();
+	}
+	@Override
+	public String toString() {
+		
+		return "hops: "+size()+" "+hops;
 	}
 }

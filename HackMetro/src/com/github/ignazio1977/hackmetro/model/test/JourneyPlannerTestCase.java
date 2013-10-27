@@ -13,6 +13,7 @@ import com.github.ignazio1977.hackmetro.model.Station;
 import com.github.ignazio1977.hackmetro.model.lines.Distances;
 import com.github.ignazio1977.hackmetro.model.lines.Line;
 import com.github.ignazio1977.hackmetro.model.lines.StationDistance;
+import com.google.common.base.Optional;
 
 public class JourneyPlannerTestCase {
 	private JourneyPlanner testSubject;
@@ -112,17 +113,7 @@ public class JourneyPlannerTestCase {
 		}
 	}
 
-	@Test
-	public void showStopsPerLine() {
-		for (Line l : Line.values()) {
-			System.out.println(l);
-			for (NamedLocation stop : l.getStations()) {
-				System.out.println(stop);
-
-			}
-		}
-	}
-	@Test
+		@Test
 	public void findDestinations() {
 		
 		for (Line l : Line.values()) {
@@ -130,7 +121,9 @@ public class JourneyPlannerTestCase {
 			for(NamedLocation loc:l.getStations()) {
 			search.setDestination(loc);
 			search.setStart(new Spot().withLongitude(loc.getLongitude().get()+0.1).withLatitude(loc.getLatitude().get()+0.1));
+			search.setStartTime(Optional.of("10:00"));
 			Journeys computeJourneys = testSubject.computeJourneys(search);
+			System.out.println("JourneyPlannerTestCase.findDestinations() "+computeJourneys);
 			}
 		}
 	}
