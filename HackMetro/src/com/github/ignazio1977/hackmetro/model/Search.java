@@ -7,8 +7,8 @@ import com.google.common.base.Optional;
 public class Search {
 	private Optional<Location> start = Optional.absent();
 	private Location destination;
-	private Optional<Date> startTime;
-	private Optional<Date> latestTime;
+	private Optional<String> startTime=Optional.absent();
+	private Optional<String> latestTime=Optional.absent();
 
 	public Optional<Location> getStart() {
 		return start;
@@ -26,19 +26,19 @@ public class Search {
 		this.destination = destination;
 	}
 
-	public Optional<Date> getStartTime() {
+	public Optional<String> getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Optional<Date> startTime) {
+	public void setStartTime(Optional<String> startTime) {
 		this.startTime = startTime;
 	}
 
-	public Optional<Date> getLatestTime() {
+	public Optional<String> getLatestTime() {
 		return latestTime;
 	}
 
-	public void setLatestTime(Optional<Date> latestTime) {
+	public void setLatestTime(Optional<String> latestTime) {
 		this.latestTime = latestTime;
 	}
 

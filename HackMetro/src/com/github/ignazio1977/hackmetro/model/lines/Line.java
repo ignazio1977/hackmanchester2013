@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.github.ignazio1977.hackmetro.model.Hop;
 import com.github.ignazio1977.hackmetro.model.Location;
 import com.github.ignazio1977.hackmetro.model.Spot;
 import com.github.ignazio1977.hackmetro.model.NamedLocation;
@@ -193,5 +194,35 @@ public enum Line {
 		}
 		return new StationDistance().withStation(closest)
 				.withDistance(closestDistance).withLine(this);
+	}
+
+	/**
+	 * @return the best hop if this line has trips which stop at a and b and have a stop
+	 *         closer to a than to b and the time at point a is before the time
+	 *         at point b
+	 */
+	public Hop goesTowards(NamedLocation a, NamedLocation b, String currentTime) {
+		if (getStations().contains(b) && getStations().contains(a)) {
+			for (Trip t : getTrips()) {
+				if (t.getTime(a).compareTo(t.getTime(b)) < 0
+						&& t.getTime(a).compareTo(currentTime) > 0) {
+					// a valid trip that we can still catch
+					Hop hop = new Hop();
+					hop.setTrip(t);
+					hop.setStart(a);
+					hop.setDestination(b);
+					return hop;
+				}
+			}
+		}
+		return null;
+	}
+	/**
+	 * @return the best hop if this line has trips which stop at b and have a stop
+	 *         closer to a than to b and the time at point a is before the time
+	 *         at point b
+	 */
+	public Hop goesTowardsBestAttempt(Location a, NamedLocation b, String currentTime) {
+		return goesTowards(findClosestStation(a).getStation(), b, currentTime);
 	}
 }
