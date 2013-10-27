@@ -34,12 +34,13 @@ public class StopUpdater {
 	public void setName(String s) {
 		this.name = s;
 	}
-@Override
-public String toString() {
-	return id+"\t"+name+"\t"+latitude+"\t"+longitude;
-}
 
-public String entry() {
-	return id+"("+name+", "+latitude+","+longitude+"),";
-}
+	@Override
+	public String toString() {
+		return id + "\t" + name + "\t" + latitude + "\t" + longitude;
+	}
+
+	public String entry() {
+		return id + "(" + name + ", " + latitude + "," + longitude + "),";
+	}
 }

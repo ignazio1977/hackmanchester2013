@@ -4,10 +4,11 @@ import static com.github.ignazio1977.hackmetro.model.enums.Stops.STOPS35;
 
 import java.util.List;
 
+import com.github.ignazio1977.hackmetro.model.NamedLocation;
 import com.github.ignazio1977.hackmetro.model.Trip;
 
-public enum TripsMET5O_2  implements Trip{
-    //@formatter:off
+public enum TripsMET5O_2 implements Trip {
+	//@formatter:off
 	Trip012168(STOPS35, new String[]{"22:47:00","22:51:00","22:53:00","22:55:00","22:58:00","23:03:00","23:07:00","23:11:00","23:14:00","23:17:00","23:20:00","23:22:00","23:24:00","23:27:00","23:28:00","23:33:00","23:34:00","23:36:00","23:41:00","23:43:00","23:46:00","23:49:00","23:50:00","23:52:00","23:54:00","23:57:00","23:59:00","24:01:00","24:03:00","24:05:00"}),
 	Trip012170(STOPS35, new String[]{"22:59:00","23:03:00","23:05:00","23:07:00","23:10:00","23:15:00","23:19:00","23:23:00","23:26:00","23:29:00","23:32:00","23:34:00","23:36:00","23:39:00","23:40:00","23:45:00","23:46:00","23:48:00","23:53:00","23:55:00","23:58:00","24:01:00","24:02:00","24:04:00","24:06:00","24:09:00","24:11:00","24:13:00","24:15:00","24:17:00"}),
 	Trip012172(STOPS35, new String[]{"23:11:00","23:15:00","23:17:00","23:19:00","23:22:00","23:27:00","23:31:00","23:35:00","23:38:00","23:41:00","23:44:00","23:46:00","23:48:00","23:51:00","23:52:00","23:57:00","23:58:00","24:00:00","24:05:00","24:07:00","24:10:00","24:13:00","24:14:00","24:16:00","24:18:00","24:21:00","24:23:00","24:25:00","24:27:00","24:29:00"}),
@@ -235,25 +236,41 @@ public enum TripsMET5O_2  implements Trip{
 	Trip012462(STOPS35, new String[]{"20:55:00","20:59:00","21:01:00","21:03:00","21:06:00","21:11:00","21:16:00","21:20:00","21:23:00","21:26:00","21:28:00","21:30:00","21:32:00","21:35:00","21:36:00","21:41:00","21:42:00","21:44:00","21:49:00","21:51:00","21:54:00","21:57:00","21:58:00","22:00:00","22:02:00","22:05:00","22:07:00","22:09:00","22:11:00","22:13:00"}),
 	Trip012463(STOPS35, new String[]{"21:10:00","21:14:00","21:16:00","21:18:00","21:21:00","21:26:00","21:31:00","21:35:00","21:38:00","21:41:00","21:43:00","21:45:00","21:47:00","21:50:00","21:51:00","21:56:00","21:57:00","21:59:00","22:04:00","22:06:00","22:09:00","22:12:00","22:13:00","22:15:00","22:17:00","22:20:00","22:22:00","22:24:00","22:26:00","22:28:00"});
 
-	//@formatter:off
+	//@formatter:on
 	private String head;
 	private List<Stops> stops;
 	private String[] times;
-	TripsMET5O_2(List<Stops> stops, String[] times){
-		this("East Didsbury, East Didsbury (Manchester Metrolink)", stops, times);
+
+	TripsMET5O_2(List<Stops> stops, String[] times) {
+		this("East Didsbury, East Didsbury (Manchester Metrolink)", stops,
+				times);
 	}
-	TripsMET5O_2(String head,List<Stops> stops, String[] times){
-		this.head=head;
-		this.stops=stops;this.times=times;
+
+	TripsMET5O_2(String head, List<Stops> stops, String[] times) {
+		this.head = head;
+		this.stops = stops;
+		this.times = times;
 	}
+
 	public String getHeadline() {
 		return head;
 	}
-public List<Stops> getStops() {
-	return stops;
-}
-public String[] getTimes() {
-	return times;
-}
+
+	public List<Stops> getStops() {
+		return stops;
+	}
+
+	public String[] getTimes() {
+		return times;
+	}
+
+	public String getTime(NamedLocation spot) {
+		for (int i = 0; i < stops.size(); i++) {
+			if (stops.get(i).getName().equals(spot.getName())) {
+				return times[i];
+			}
+		}
+		return "";
+	}
 
 }

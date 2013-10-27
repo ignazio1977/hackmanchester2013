@@ -6,7 +6,7 @@ import java.util.List;
 import com.github.ignazio1977.hackmetro.model.NamedLocation;
 import com.google.common.base.Optional;
 
-public enum Stops implements NamedLocation{
+public enum Stops implements NamedLocation {
 	//@formatter:off
 	STOP9400ZZMAKNY2("Milnrow, Kingsway (Manchester Metrolink) (Platform 2)", 53.61125,-2.12423),
 	STOP9400ZZMACLN1("Clayton, Clayton Hall (Manchester Metrolink) (Platform 1)", 53.48281,-2.18257),
@@ -196,25 +196,32 @@ public enum Stops implements NamedLocation{
 	public static List<Stops> STOPS2  = Arrays.asList( STOP9400ZZMADRO2,STOP9400ZZMACEM2,STOP9400ZZMAELN2,STOP9400ZZMACLN2,STOP9400ZZMAVPK2,STOP9400ZZMAECS2,STOP9400ZZMAHTN2,STOP9400ZZMANIS2,STOP9400ZZMAPIC2,STOP9400ZZMAPGD2,STOP9400ZZMAMKT2,STOP9400ZZMASHU1,STOP9400ZZMAVIC2,STOP9400ZZMAABM1,STOP9400ZZMACRU1,STOP9400ZZMABOW1,STOP9400ZZMAHEA1,STOP9400ZZMAPWC1,STOP9400ZZMABOB1,STOP9400ZZMAWFD1,STOP9400ZZMARAD1,STOP9400ZZMABUR1);
 
 	//@formatter:on
-	
+
 	public static Stops fromStopCode(String stopCode) {
-		return valueOf("STOP"+stopCode);
+		return valueOf("STOP" + stopCode);
 	}
-	
+
 	private String name;
 	private double latitude;
 	private double longitude;
 
-	Stops(String name, double latitude, double longitude){
-		this.name=name;this.latitude=latitude;this.longitude=longitude;
+	Stops(String name, double latitude, double longitude) {
+		this.name = name;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
-	public Optional<String> getName() {return Optional.of(name);}
-@Override
-public Optional<Double> getLatitude() {
-	return Optional.of(latitude);
-}
-@Override
-public Optional<Double> getLongitude() {
-	return Optional.of(longitude);
-}
+
+	public Optional<String> getName() {
+		return Optional.of(name);
+	}
+
+	@Override
+	public Optional<Double> getLatitude() {
+		return Optional.of(latitude);
+	}
+
+	@Override
+	public Optional<Double> getLongitude() {
+		return Optional.of(longitude);
+	}
 }

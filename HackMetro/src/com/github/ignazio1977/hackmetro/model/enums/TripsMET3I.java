@@ -9,9 +9,10 @@ import static com.github.ignazio1977.hackmetro.model.enums.Stops.STOPS20;
 
 import java.util.List;
 
+import com.github.ignazio1977.hackmetro.model.NamedLocation;
 import com.github.ignazio1977.hackmetro.model.Trip;
 
-public enum TripsMET3I  implements Trip{
+public enum TripsMET3I implements Trip {
 	//@formatter:off
 	Trip001006(STOPS20, new String[]{"05:59:00","06:01:00","06:03:00","06:05:00","06:07:00","06:08:00","06:10:00","06:12:00","06:14:00","06:16:00","06:19:00","06:22:00","06:25:00","06:28:00"}),
 	Trip001007(STOPS20, new String[]{"06:11:00","06:13:00","06:15:00","06:17:00","06:19:00","06:20:00","06:22:00","06:24:00","06:26:00","06:28:00","06:31:00","06:34:00","06:37:00","06:40:00"}),
@@ -375,21 +376,38 @@ public enum TripsMET3I  implements Trip{
 	private String head;
 	private List<Stops> stops;
 	private String[] times;
-	TripsMET3I(List<Stops> stops, String[] times){
-		this("Manchester City Centre, Piccadilly Station (Manchester Metrolink)", stops, times);
+
+	TripsMET3I(List<Stops> stops, String[] times) {
+		this(
+				"Manchester City Centre, Piccadilly Station (Manchester Metrolink)",
+				stops, times);
 	}
-	TripsMET3I(String head,List<Stops> stops, String[] times){
-		this.head=head;
-		this.stops=stops;this.times=times;
+
+	TripsMET3I(String head, List<Stops> stops, String[] times) {
+		this.head = head;
+		this.stops = stops;
+		this.times = times;
 	}
+
 	public String getHeadline() {
 		return head;
 	}
-public List<Stops> getStops() {
-	return stops;
-}
-public String[] getTimes() {
-	return times;
-}
+
+	public List<Stops> getStops() {
+		return stops;
+	}
+
+	public String[] getTimes() {
+		return times;
+	}
+
+	public String getTime(NamedLocation spot) {
+		for (int i = 0; i < stops.size(); i++) {
+			if (stops.get(i).getName().equals(spot.getName())) {
+				return times[i];
+			}
+		}
+		return "";
+	}
 
 }

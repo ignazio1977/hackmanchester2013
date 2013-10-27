@@ -4,6 +4,7 @@ import static com.github.ignazio1977.hackmetro.model.enums.Stops.STOPS26;
 
 import java.util.List;
 
+import com.github.ignazio1977.hackmetro.model.NamedLocation;
 import com.github.ignazio1977.hackmetro.model.Trip;
 
 public enum TripsMET5I_2 implements Trip {
@@ -257,21 +258,37 @@ public enum TripsMET5I_2 implements Trip {
 	private String head;
 	private List<Stops> stops;
 	private String[] times;
-	TripsMET5I_2(List<Stops> stops, String[] times){
-		this("Rochdale, Rochdale Railway Station (Manchester Metrolink)", stops, times);
+
+	TripsMET5I_2(List<Stops> stops, String[] times) {
+		this("Rochdale, Rochdale Railway Station (Manchester Metrolink)",
+				stops, times);
 	}
-	TripsMET5I_2(String head,List<Stops> stops, String[] times){
-		this.head=head;
-		this.stops=stops;this.times=times;
+
+	TripsMET5I_2(String head, List<Stops> stops, String[] times) {
+		this.head = head;
+		this.stops = stops;
+		this.times = times;
 	}
+
 	public String getHeadline() {
 		return head;
 	}
-public List<Stops> getStops() {
-	return stops;
-}
-public String[] getTimes() {
-	return times;
-}
+
+	public List<Stops> getStops() {
+		return stops;
+	}
+
+	public String[] getTimes() {
+		return times;
+	}
+
+	public String getTime(NamedLocation spot) {
+		for (int i = 0; i < stops.size(); i++) {
+			if (stops.get(i).getName().equals(spot.getName())) {
+				return times[i];
+			}
+		}
+		return "";
+	}
 
 }

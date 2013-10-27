@@ -30,8 +30,8 @@ public enum Line {
 	ROUTEMET1I {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET1I.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET1I.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -40,8 +40,8 @@ public enum Line {
 	ROUTEMET1O {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET1O.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET1O.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -50,8 +50,8 @@ public enum Line {
 	ROUTEMET2I {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET2I.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET2I.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -60,8 +60,8 @@ public enum Line {
 	ROUTEMET2O {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET2O.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET2O.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -70,8 +70,8 @@ public enum Line {
 	ROUTEMET3I {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET3I.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET3I.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -80,8 +80,8 @@ public enum Line {
 	ROUTEMET3O {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET3O.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET3O.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -89,18 +89,19 @@ public enum Line {
 	},
 	ROUTEMET4I {
 		@Override
-		public List<Trip> getTrips() {	List<Trip> toReturn=new ArrayList<Trip>();
-		for(Trip t:TripsMET4I.values()) {
-			toReturn.add(t);
-		}
-		return toReturn;
+		public List<Trip> getTrips() {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET4I.values()) {
+				toReturn.add(t);
+			}
+			return toReturn;
 		}
 	},
 	ROUTEMET4O {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET4O.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET4O.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -109,8 +110,8 @@ public enum Line {
 	ROUTEMET5I {
 		@Override
 		public List<Trip> getTrips() {
-				List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET5I.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET5I.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -119,8 +120,8 @@ public enum Line {
 	ROUTEMET5O {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET5O.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET5O.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -129,8 +130,8 @@ public enum Line {
 	ROUTEMET5I_2 {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET5I_2.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET5I_2.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -139,8 +140,8 @@ public enum Line {
 	ROUTEMET5O_2 {
 		@Override
 		public List<Trip> getTrips() {
-			List<Trip> toReturn=new ArrayList<Trip>();
-			for(Trip t:TripsMET5O_2.values()) {
+			List<Trip> toReturn = new ArrayList<Trip>();
+			for (Trip t : TripsMET5O_2.values()) {
 				toReturn.add(t);
 			}
 			return toReturn;
@@ -158,7 +159,6 @@ public enum Line {
 	}
 
 	public abstract List<Trip> getTrips();
-
 
 	/**
 	 * @param spot

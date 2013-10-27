@@ -20,10 +20,11 @@ import static com.github.ignazio1977.hackmetro.model.enums.Stops.STOPS38;
 
 import java.util.List;
 
+import com.github.ignazio1977.hackmetro.model.NamedLocation;
 import com.github.ignazio1977.hackmetro.model.Trip;
 
-public enum TripsMET5O  implements Trip{
-    //@formatter:off
+public enum TripsMET5O implements Trip {
+	//@formatter:off
 	Trip012299("Chorlton, St Werburgh's Rd Station (Manchester Metrolink)",STOPS31, new String[]{"19:04:00","19:07:00","19:10:00","19:12:00","19:15:00","19:18:00","19:19:00","19:21:00","19:23:00"}),
 	Trip012300("Chorlton, St Werburgh's Rd Station (Manchester Metrolink)",STOPS31, new String[]{"19:16:00","19:19:00","19:22:00","19:24:00","19:27:00","19:30:00","19:31:00","19:33:00","19:35:00"}),
 	Trip012301("Chorlton, St Werburgh's Rd Station (Manchester Metrolink)",STOPS31, new String[]{"19:28:00","19:31:00","19:34:00","19:36:00","19:39:00","19:42:00","19:43:00","19:45:00","19:47:00"}),
@@ -203,21 +204,37 @@ public enum TripsMET5O  implements Trip{
 	private String head;
 	private List<Stops> stops;
 	private String[] times;
-	TripsMET5O(List<Stops> stops, String[] times){
-		this("East Didsbury, East Didsbury (Manchester Metrolink)", stops, times);
+
+	TripsMET5O(List<Stops> stops, String[] times) {
+		this("East Didsbury, East Didsbury (Manchester Metrolink)", stops,
+				times);
 	}
-	TripsMET5O(String head,List<Stops> stops, String[] times){
-		this.head=head;
-		this.stops=stops;this.times=times;
+
+	TripsMET5O(String head, List<Stops> stops, String[] times) {
+		this.head = head;
+		this.stops = stops;
+		this.times = times;
 	}
+
 	public String getHeadline() {
 		return head;
 	}
-public List<Stops> getStops() {
-	return stops;
-}
-public String[] getTimes() {
-	return times;
-}
+
+	public List<Stops> getStops() {
+		return stops;
+	}
+
+	public String[] getTimes() {
+		return times;
+	}
+
+	public String getTime(NamedLocation spot) {
+		for (int i = 0; i < stops.size(); i++) {
+			if (stops.get(i).getName().equals(spot.getName())) {
+				return times[i];
+			}
+		}
+		return "";
+	}
 
 }

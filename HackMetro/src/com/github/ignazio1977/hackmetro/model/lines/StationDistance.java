@@ -7,7 +7,7 @@ import com.github.ignazio1977.hackmetro.model.Station;
 public class StationDistance {
 	private NamedLocation station;
 	private double distance;
-	
+
 	private Line line;
 
 	public double getDistance() {
@@ -15,7 +15,8 @@ public class StationDistance {
 	}
 
 	public StationDistance withDistance(double distance) {
-		this.distance = distance;return this;
+		this.distance = distance;
+		return this;
 	}
 
 	public NamedLocation getStation() {
@@ -23,7 +24,8 @@ public class StationDistance {
 	}
 
 	public StationDistance withStation(NamedLocation station) {
-		this.station = station;return this;
+		this.station = station;
+		return this;
 	}
 
 	public Line getLine() {
@@ -31,7 +33,8 @@ public class StationDistance {
 	}
 
 	public StationDistance withLine(Line line) {
-		this.line = line;return this;
+		this.line = line;
+		return this;
 	}
 
 }

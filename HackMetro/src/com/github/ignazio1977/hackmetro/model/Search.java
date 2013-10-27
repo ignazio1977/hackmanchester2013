@@ -5,7 +5,7 @@ import java.util.Date;
 import com.google.common.base.Optional;
 
 public class Search {
-	private Optional<Spot> start=Optional.absent();
+	private Optional<Spot> start = Optional.absent();
 	private Spot destination;
 	private Optional<Date> startTime;
 	private Optional<Date> latestTime;

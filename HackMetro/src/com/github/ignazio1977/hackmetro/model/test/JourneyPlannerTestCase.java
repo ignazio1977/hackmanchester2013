@@ -41,7 +41,7 @@ public class JourneyPlannerTestCase {
 				// when
 				boolean result = line.containsStation(l);
 				// then
-				assertTrue(line+" "+l,result);
+				assertTrue(line + " " + l, result);
 			}
 		}
 	}
@@ -98,7 +98,8 @@ public class JourneyPlannerTestCase {
 			StationDistance result = line.findClosestStation(spot);
 			// then
 			assertNotNull(result.getStation());
-			assertEquals(Distances.distance(spot, result.getStation()), (double) result.getDistance(), 0.0001);
+			assertEquals(Distances.distance(spot, result.getStation()),
+					(double) result.getDistance(), 0.0001);
 			// given
 			spot.setLatitude(1);
 			spot.setLongitude(1);
@@ -106,7 +107,8 @@ public class JourneyPlannerTestCase {
 			result = line.findClosestStation(spot);
 			// then
 			assertNotNull(result.getStation());
-			assertEquals(Distances.distance(spot, result.getStation()), (double) result.getDistance(), 0.0001);
+			assertEquals(Distances.distance(spot, result.getStation()),
+					(double) result.getDistance(), 0.0001);
 			// given
 			spot.setLatitude(200);
 			spot.setLongitude(200);
@@ -114,7 +116,19 @@ public class JourneyPlannerTestCase {
 			result = line.findClosestStation(spot);
 			// then
 			assertNotNull(result.getStation());
-			assertEquals(Distances.distance(spot, result.getStation()), (double) result.getDistance(), 0.0001);
+			assertEquals(Distances.distance(spot, result.getStation()),
+					(double) result.getDistance(), 0.0001);
+		}
+	}
+
+	@Test
+	public void showStopsPerLine() {
+		for (Line l : Line.values()) {
+			System.out.println(l);
+			for (NamedLocation stop : l.getStations()) {
+				System.out.println(stop);
+
+			}
 		}
 	}
 }

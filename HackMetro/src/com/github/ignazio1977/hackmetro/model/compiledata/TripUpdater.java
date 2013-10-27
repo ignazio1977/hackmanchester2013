@@ -18,7 +18,8 @@ public class TripUpdater {
 	}
 
 	public TripUpdater withName(String name) {
-		this.name = name;return this;
+		this.name = name;
+		return this;
 	}
 
 	public List<Stops> getStops() {
@@ -35,39 +36,39 @@ public class TripUpdater {
 
 	@Override
 	public String toString() {
-		return name+"\t"+times;
+		return name + "\t" + times;
 	}
 
 	public String entry(int n) {
-		StringBuilder time=new StringBuilder();
-		boolean first=true;
-		for(Map.Entry<Stops, String> e:times.entrySet()) {
-			if(!first) {
-				
+		StringBuilder time = new StringBuilder();
+		boolean first = true;
+		for (Map.Entry<Stops, String> e : times.entrySet()) {
+			if (!first) {
+
 				time.append(",");
 			}
-			first=false;
-			time.append("\""+e.getValue()+"\"");
+			first = false;
+			time.append("\"" + e.getValue() + "\"");
 		}
-		return name+"(STOPS" +n +
-						", new String[]{"+time+"}),";
+		return name + "(STOPS" + n + ", new String[]{" + time + "}),";
 	}
 
 	private String getStopExpression() {
-		boolean first=true;
-		StringBuilder stop=new StringBuilder();
-		for(Map.Entry<Stops, String> e:times.entrySet()) {
-			if(!first) {
-				
+		boolean first = true;
+		StringBuilder stop = new StringBuilder();
+		for (Map.Entry<Stops, String> e : times.entrySet()) {
+			if (!first) {
+
 				stop.append(",");
 
 			}
-			first=false;
+			first = false;
 			stop.append(e.getKey());
 
 		}
 		return stop.toString();
 	}
+
 	public String entrySTOPS() {
 		return getStopExpression();
 	}

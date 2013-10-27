@@ -12,10 +12,11 @@ import static com.github.ignazio1977.hackmetro.model.enums.Stops.STOPS30;
 
 import java.util.List;
 
+import com.github.ignazio1977.hackmetro.model.NamedLocation;
 import com.github.ignazio1977.hackmetro.model.Trip;
 
 public enum TripsMET5I implements Trip {
-    //@formatter:off
+	//@formatter:off
 	Trip011789("Piccadilly Gardens, Piccadilly Gardens (Manchester Metrolink)",STOPS22, new String[]{"05:29:00","05:32:00","05:34:00","05:38:00","05:40:00"}),
 	Trip011968("Firswood, Firswood Station (Manchester Metrolink)",STOPS23, new String[]{"18:03:00","18:05:00","18:07:00","18:09:00","18:11:00","18:14:00","18:16:00","18:18:00"}),
 	Trip012051("Firswood, Firswood Station (Manchester Metrolink)",STOPS23, new String[]{"18:03:00","18:05:00","18:07:00","18:09:00","18:11:00","18:14:00","18:16:00","18:18:00"}),
@@ -161,25 +162,41 @@ public enum TripsMET5I implements Trip {
 	Trip012066(STOPS26, new String[]{"21:48:00","21:50:00","21:52:00","21:54:00","21:56:00","21:59:00","22:01:00","22:03:00","22:04:00","22:06:00","22:09:00","22:12:00","22:16:00","22:18:00","22:19:00","22:24:00","22:25:00","22:28:00","22:30:00","22:32:00","22:35:00","22:38:00","22:41:00","22:45:00","22:50:00","22:55:00","22:58:00","23:00:00","23:02:00","23:06:00"}),
 Trip012072("Manchester City Centre, Piccadilly Station (Manchester Metrolink)",STOPS30, new String[]{"22:18:00","22:20:00","22:22:00","22:24:00","22:26:00","22:29:00","22:31:00","22:33:00","22:34:00","22:36:00","22:39:00","22:42:00","22:47:00"});
 
-	//@formatter:off
+	//@formatter:on
 	private String head;
 	private List<Stops> stops;
 	private String[] times;
-	TripsMET5I(List<Stops> stops, String[] times){
-		this("Rochdale, Rochdale Railway Station (Manchester Metrolink)", stops, times);
+
+	TripsMET5I(List<Stops> stops, String[] times) {
+		this("Rochdale, Rochdale Railway Station (Manchester Metrolink)",
+				stops, times);
 	}
-	TripsMET5I(String head,List<Stops> stops, String[] times){
-		this.head=head;
-		this.stops=stops;this.times=times;
+
+	TripsMET5I(String head, List<Stops> stops, String[] times) {
+		this.head = head;
+		this.stops = stops;
+		this.times = times;
 	}
+
 	public String getHeadline() {
 		return head;
 	}
-public List<Stops> getStops() {
-	return stops;
-}
-public String[] getTimes() {
-	return times;
-}
+
+	public List<Stops> getStops() {
+		return stops;
+	}
+
+	public String[] getTimes() {
+		return times;
+	}
+
+	public String getTime(NamedLocation spot) {
+		for (int i = 0; i < stops.size(); i++) {
+			if (stops.get(i).getName().equals(spot.getName())) {
+				return times[i];
+			}
+		}
+		return "";
+	}
 
 }
