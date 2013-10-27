@@ -30,17 +30,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		android.view.View.OnClickListener fromClickListener = new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				Intent intent = new Intent(MainActivity.this,
-						SearchViewStationsActivity.class);
-				startActivityForResult(intent, FROM_VALUE);
-			}
-		};
 		EditText from = (EditText) findViewById(R.id.from);
-		from.setOnClickListener(fromClickListener);
+		ConfigureTextField(from, FROM_VALUE);
+
 		EditText to = (EditText) findViewById(R.id.to);
 		android.view.View.OnClickListener toClickListener = new View.OnClickListener() {
 
@@ -75,6 +67,19 @@ public class MainActivity extends Activity {
 					}
 
 				});
+	}
+
+	private void ConfigureTextField(EditText from, final int staticStringId) {
+		android.view.View.OnClickListener fromClickListener = new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(MainActivity.this,
+						SearchViewStationsActivity.class);
+				startActivityForResult(intent, staticStringId);
+			}
+		};
+		from.setOnClickListener(fromClickListener);
 	}
 
 	@Override
