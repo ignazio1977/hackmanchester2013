@@ -22,6 +22,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.github.ignazio1977.hackmetro.DisplayJourneysActivity"
+            android:label="@string/journeys_activity_display_message"
+            android:parentActivityName="com.example.mytest.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mytest.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.github.ignazio1977.hackmetro.SearchViewStationsActivity"
+            android:label="@string/stations_search_title"
+            android:parentActivityName="com.example.mytest.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mytest.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
