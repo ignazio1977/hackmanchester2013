@@ -34,13 +34,20 @@ public class DisplayJourneyActivity extends Activity {
 
 		// Get the right List
 		ListView hopListView = (ListView) findViewById(R.id.hop_list);
+		// List<String> hopList = FakeModel.getHopList(journeyInfo);
+		// Journey journey = FakeModel.getFakeJourney(journeyInfo);
+		// StationItemAdapter adapter = new StationItemAdapter(this,
+		// R.layout.journey_list_row, journey);
+		// hopListView.setAdapter(adapter);
+
 		List<String> hopList = FakeModel.getHopList(journeyInfo);
 		Journey journey = FakeModel.getFakeJourney(journeyInfo);
-		StationItemAdapter adapter = new StationItemAdapter(this,
-				R.layout.journey_list_row, journey);
+		// StationItemAdapter adapter = new StationItemAdapter(this,
+		// R.layout.journey_list_row, journey);
 		hopListView.setAdapter(new ArrayAdapter<String>(
 				DisplayJourneyActivity.this,
 				android.R.layout.simple_list_item_1, hopList));
+
 	}
 
 	@Override

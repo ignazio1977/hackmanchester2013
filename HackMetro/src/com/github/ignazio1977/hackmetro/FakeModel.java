@@ -34,11 +34,18 @@ public class FakeModel {
 		}
 	}
 
-	public static final Journey fJourney_1 = new Journey();
-
 	public static Journey getFakeJourney(String journeyInfo) {
-		Hop hop1 = new Hop();
+		Journey toReturn = new Journey();
+		List<String> hopList = getHopList(journeyInfo);
+		for (int i = 0; i < hopList.size(); i++) {
+			FakeNamedLocation fakeStartLocation = new FakeNamedLocation(
+					hopList.get(i));
+			Hop hop = new Hop();
+			hop.setStart(fakeStartLocation);
+			toReturn.addHop(hop);
+		}
 
-		return null;
+		return toReturn;
 	}
+
 }

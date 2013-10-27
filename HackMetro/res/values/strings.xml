@@ -14,5 +14,6 @@
     <string name="stations_search_title">Search station</string>
     <string name="select_time">Select Time (Optional)</string>
     <string name="journey_details">Enter your journey details</string>
+    <string name="icon">icon</string>
 
 </resources>

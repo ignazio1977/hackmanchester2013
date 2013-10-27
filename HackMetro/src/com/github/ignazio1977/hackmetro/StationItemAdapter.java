@@ -54,20 +54,21 @@ public class StationItemAdapter extends ArrayAdapter<Station> {
 		TextView textView = (TextView) rowView.findViewById(R.id.textView);
 
 		Station item = getItem(position);
-		textView.setText(item.getName().get());
+		// textView.setText(item.getName().get());
+		textView.setText("test");
 		String imageFile = getImageFile(position);
 
 		// get input stream
-		InputStream ims = null;
 		try {
-			ims = context.getAssets().open(imageFile);
+			InputStream ims = context.getAssets().open(imageFile);
+			// load image as Drawable
+			Drawable d = Drawable.createFromStream(ims, "src");
+			// set image to ImageView
+			imageView.setImageDrawable(d);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// load image as Drawable
-		Drawable d = Drawable.createFromStream(ims, null);
-		// set image to ImageView
-		imageView.setImageDrawable(d);
+
 		return rowView;
 	}
 
