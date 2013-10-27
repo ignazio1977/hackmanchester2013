@@ -1,7 +1,5 @@
 package com.github.ignazio1977.hackmetro;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
@@ -14,6 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.github.ignazio1977.hackmetro.model.NamedLocation;
+import com.github.ignazio1977.hackmetro.model.enums.Stops;
+
 public class SearchViewStationsActivity extends Activity implements
 		SearchView.OnQueryTextListener {
 
@@ -22,9 +23,6 @@ public class SearchViewStationsActivity extends Activity implements
 	private ListView mListView;
 	private ArrayAdapter<String> mAdapter;
 
-	List<String> stations = new ArrayList<String>(Arrays.asList(
-			"Market Street", "MediaCityUk", "Eccles"));
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,8 +30,11 @@ public class SearchViewStationsActivity extends Activity implements
 
 		mSearchView = (SearchView) findViewById(R.id.search_view);
 		mListView = (ListView) findViewById(R.id.list_view);
+
+		List<NamedLocation> asNamedLocations = Stops.asNamedLocations();
+		List<String> stops = Utils.extractStringLocation(asNamedLocations);
 		mListView.setAdapter(mAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, stations));
+				android.R.layout.simple_list_item_1, stops));
 		mListView.setTextFilterEnabled(true);
 		mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

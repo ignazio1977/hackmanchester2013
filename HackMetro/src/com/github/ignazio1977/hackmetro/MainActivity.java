@@ -14,6 +14,12 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.github.ignazio1977.hackmetro.model.Journey;
+import com.github.ignazio1977.hackmetro.model.JourneyPlanner;
+import com.github.ignazio1977.hackmetro.model.Journeys;
+import com.github.ignazio1977.hackmetro.model.Search;
+import com.github.ignazio1977.hackmetro.model.enums.Stops;
+
 public class MainActivity extends Activity {
 
 	public static final String EXTRA_MESSAGE = "com.github.ignazio1977.hackmetro.MESSAGE";
@@ -23,32 +29,24 @@ public class MainActivity extends Activity {
 	private ListView journeysListView;
 	private ArrayAdapter<String> journeyListAdapter;
 
-	private final List<String> journeysList = new ArrayList<String>();
+	private final List<String> journeysInfoList = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		// Configure to and from
 		EditText from = (EditText) findViewById(R.id.from);
 		ConfigureTextField(from, FROM_VALUE);
 
 		EditText to = (EditText) findViewById(R.id.to);
-		android.view.View.OnClickListener toClickListener = new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				Intent intent = new Intent(MainActivity.this,
-						SearchViewStationsActivity.class);
-				startActivityForResult(intent, TO_VALUE);
-			}
-		};
-		to.setOnClickListener(toClickListener);
+		ConfigureTextField(to, TO_VALUE);
 
 		journeysListView = (ListView) findViewById(R.id.journeys_list);
 
 		journeyListAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, journeysList);
+				android.R.layout.simple_list_item_1, journeysInfoList);
 		journeysListView.setAdapter(journeyListAdapter);
 		// set click listener show journey on the journeysListView
 		// journeysListView
@@ -90,19 +88,47 @@ public class MainActivity extends Activity {
 	}
 
 	public void getJourneys(View view) {
-		// update list instead
-
 		// XXX: This should change with the real Journeys:
-		journeysListView = (ListView) findViewById(R.id.journeys_list);
-		journeysList.clear();
-		journeysList.addAll(FakeModel.fakeJourneys);
-		((BaseAdapter) journeysListView.getAdapter()).notifyDataSetChanged();
+		Search search = createSearch();
+		if (search != null) {
+			JourneyPlanner planner = new JourneyPlanner();
+			Journeys computeJourneys = planner.computeJourneys(search);
+			journeysInfoList.clear();
+			for (Journey journey : computeJourneys.getJourneys()) {
+				journeysInfoList.add(journey.toString());
+			}
+			journeysListView = (ListView) findViewById(R.id.journeys_list);
+			((BaseAdapter) journeysListView.getAdapter())
+					.notifyDataSetChanged();
+		}
+	}
 
-		// EditText fromText = (EditText) findViewById(R.id.from);
-		// EditText toText = (EditText) findViewById(R.id.to);
-		// String message = toText.getText().toString();
-		// intent.putExtra(EXTRA_MESSAGE, message);
-		// startActivity(intent);
+	private Search createSearch() {
+		EditText from = (EditText) findViewById(R.id.from);
+		String start = from.getText().toString();
+		EditText to = (EditText) findViewById(R.id.to);
+		String end = to.getText().toString();
+
+		if (start != null && !start.isEmpty() && !start.equals(end)
+				&& end != null && !end.isEmpty()) {
+			Stops actualStart = null;
+			Stops actualEnd = null;
+			for (Stops s : Stops.values()) {
+				if (s.getName().equals(start)) {
+					actualStart = s;
+				}
+				if (s.getName().equals(end)) {
+					actualEnd = s;
+				}
+			}
+			Search search = new Search();
+			search.setStart(actualStart);
+			search.setDestination(actualEnd);
+			return search;
+		} else {
+			return null;
+		}
+
 	}
 
 	@Override
