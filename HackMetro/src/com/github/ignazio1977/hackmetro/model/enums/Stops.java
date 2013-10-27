@@ -1,5 +1,6 @@
 package com.github.ignazio1977.hackmetro.model.enums;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -224,9 +225,17 @@ public enum Stops implements NamedLocation {
 	public Optional<Double> getLongitude() {
 		return Optional.of(longitude);
 	}
-	
+
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public static List<NamedLocation> asNamedLocations() {
+		List<NamedLocation> locations = new ArrayList<NamedLocation>();
+		for (Stops s : values()) {
+			locations.add(s);
+		}
+		return locations;
 	}
 }

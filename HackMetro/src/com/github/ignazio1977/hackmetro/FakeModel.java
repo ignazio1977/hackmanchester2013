@@ -42,7 +42,7 @@ public class FakeModel {
 					hopList.get(i));
 			Hop hop = new Hop();
 			hop.setStart(fakeStartLocation);
-			toReturn.addHop(hop);
+			toReturn.addFirstHop(hop);
 		}
 
 		return toReturn;
