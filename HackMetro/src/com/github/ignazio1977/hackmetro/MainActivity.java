@@ -1,17 +1,29 @@
 package com.github.ignazio1977.hackmetro;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
 	public static final String EXTRA_MESSAGE = "com.github.ignazio1977.hackmetro.MESSAGE";
 	protected static final int FROM_VALUE = 0;
 	protected static final int TO_VALUE = 1;
+
+	private ListView journeysListView;
+	private ArrayAdapter<String> journeyListAdapter;
+
+	private final List<String> journeysList = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,29 @@ public class MainActivity extends Activity {
 			}
 		};
 		to.setOnClickListener(toClickListener);
+
+		journeysListView = (ListView) findViewById(R.id.journeys_list);
+
+		journeyListAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, journeysList);
+		journeysListView.setAdapter(journeyListAdapter);
+		// set click listener show journey on the journeysListView
+		// journeysListView
+		journeysListView
+				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> parent,
+							final View view, int position, long id) {
+						Intent intent = new Intent(MainActivity.this,
+								DisplayJourneyActivity.class);
+						final String item = (String) parent
+								.getItemAtPosition(position);
+						intent.putExtra(EXTRA_MESSAGE, item);
+						startActivity(intent);
+					}
+
+				});
 	}
 
 	@Override
@@ -50,12 +85,19 @@ public class MainActivity extends Activity {
 	}
 
 	public void getJourneys(View view) {
-		Intent intent = new Intent(this, DisplayJourneysActivity.class);
-		EditText fromText = (EditText) findViewById(R.id.from);
-		EditText toText = (EditText) findViewById(R.id.to);
-		String message = toText.getText().toString();
-		intent.putExtra(EXTRA_MESSAGE, message);
-		startActivity(intent);
+		// update list instead
+
+		// XXX: This should change with the real Journeys:
+		journeysListView = (ListView) findViewById(R.id.journeys_list);
+		journeysList.clear();
+		journeysList.addAll(FakeModel.fakeJourneys);
+		((BaseAdapter) journeysListView.getAdapter()).notifyDataSetChanged();
+
+		// EditText fromText = (EditText) findViewById(R.id.from);
+		// EditText toText = (EditText) findViewById(R.id.to);
+		// String message = toText.getText().toString();
+		// intent.putExtra(EXTRA_MESSAGE, message);
+		// startActivity(intent);
 	}
 
 	@Override

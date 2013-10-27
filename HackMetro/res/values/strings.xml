@@ -9,7 +9,7 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="button_get_journeys">Get me there</string>
-    <string name="journeys">Journeys</string>
+    <string name="journeys">Journey</string>
     <string name="journeys_activity_display_message">Journeys</string>
     <string name="stations_search_title">Search station</string>
     <string name="select_time">Select Time (Optional)</string>

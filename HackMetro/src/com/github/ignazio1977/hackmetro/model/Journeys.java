@@ -5,17 +5,21 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**All the available journeys between a start spot and an end spot.*/
+/** All the available journeys between a start spot and an end spot. */
 public class Journeys {
 	private final List<Journey> journeys = new ArrayList<Journey>();
 
-	/**@param journey journey to add to the collection of journeys*/
+	/**
+	 * @param journey
+	 *            journey to add to the collection of journeys
+	 */
 	public void addJourney(Journey journey) {
 		journeys.add(journey);
 	}
 
 	/**
 	 * Sort the list of journeys.
+	 * 
 	 * @param comparator
 	 *            a comparator to sort the list of journeys, e.g., by start
 	 *            time, by duration, or by number of changes
@@ -29,4 +33,9 @@ public class Journeys {
 			// the collection unsorted.
 		}
 	}
+
+	public List<Journey> getJourneys() {
+		return journeys;
+	}
+
 }

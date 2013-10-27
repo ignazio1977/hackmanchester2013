@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.github.ignazio1977.hackmetro.DisplayJourneysActivity"
+            android:name="com.github.ignazio1977.hackmetro.DisplayJourneyActivity"
             android:label="@string/journeys_activity_display_message"
             android:parentActivityName="com.example.mytest.MainActivity" >
             <meta-data
