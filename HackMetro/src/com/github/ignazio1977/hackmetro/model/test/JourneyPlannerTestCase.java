@@ -23,15 +23,6 @@ public class JourneyPlannerTestCase {
 
 	}
 
-	@Test
-	public void shouldCreateJourneys() {
-		// given
-		Search search = new Search();
-		// when
-		Journeys journeys = testSubject.computeJourneys(search);
-		// then
-		assertNotNull(journeys);
-	}
 
 	@Test
 	public void shouldFindStationOnLineByName() {
@@ -128,6 +119,18 @@ public class JourneyPlannerTestCase {
 			for (NamedLocation stop : l.getStations()) {
 				System.out.println(stop);
 
+			}
+		}
+	}
+	@Test
+	public void findDestinations() {
+		
+		for (Line l : Line.values()) {
+			Search search=new Search();
+			for(NamedLocation loc:l.getStations()) {
+			search.setDestination(loc);
+			search.setStart(new Spot().withLongitude(loc.getLongitude().get()+0.1).withLatitude(loc.getLatitude().get()+0.1));
+			Journeys computeJourneys = testSubject.computeJourneys(search);
 			}
 		}
 	}

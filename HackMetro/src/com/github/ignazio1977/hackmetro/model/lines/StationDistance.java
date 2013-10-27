@@ -36,5 +36,10 @@ public class StationDistance {
 		this.line = line;
 		return this;
 	}
+	@Override
+	public String toString() {
+		
+		return station+" "+ line+" "+distance;
+	}
 
 }

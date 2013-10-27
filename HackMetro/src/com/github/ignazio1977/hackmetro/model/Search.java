@@ -5,24 +5,24 @@ import java.util.Date;
 import com.google.common.base.Optional;
 
 public class Search {
-	private Optional<Spot> start = Optional.absent();
-	private Spot destination;
+	private Optional<Location> start = Optional.absent();
+	private Location destination;
 	private Optional<Date> startTime;
 	private Optional<Date> latestTime;
 
-	public Optional<Spot> getStart() {
+	public Optional<Location> getStart() {
 		return start;
 	}
 
-	public void setStart(Spot start) {
+	public void setStart(Location start) {
 		this.start = Optional.of(start);
 	}
 
-	public Spot getDestination() {
+	public Location getDestination() {
 		return destination;
 	}
 
-	public void setDestination(Spot destination) {
+	public void setDestination(Location destination) {
 		this.destination = destination;
 	}
 

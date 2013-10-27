@@ -224,4 +224,9 @@ public enum Stops implements NamedLocation {
 	public Optional<Double> getLongitude() {
 		return Optional.of(longitude);
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

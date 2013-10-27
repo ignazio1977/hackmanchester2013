@@ -21,4 +21,10 @@ public class Spot implements Location {
 	public void setLatitude(double latitude) {
 		this.latitude = Optional.of(latitude);
 	}
+	public Spot withLongitude(double d) {
+		setLongitude(d);return this;
+	}
+	public Spot withLatitude(double d) {
+		setLatitude(d);return this;
+	}
 }

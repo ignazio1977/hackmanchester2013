@@ -1,6 +1,7 @@
 package com.github.ignazio1977.hackmetro.model;
 
 public class Hop {
+
 	private Trip trip;
 	private NamedLocation start;
 	private NamedLocation stop;
@@ -20,4 +21,16 @@ public class Hop {
 	public String getDestinationTime() {
 		return trip.getTime(stop);
 	}
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+
+	public void setStart(NamedLocation start) {
+		this.start = start;
+	}
+
+	public void setDestination(NamedLocation stop) {
+		this.stop = stop;
+	}
+
 }

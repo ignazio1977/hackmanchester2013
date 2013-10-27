@@ -2,7 +2,9 @@ package com.github.ignazio1977.hackmetro.model.lines;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ClosestStations {
 	private List<StationDistance> stations = new ArrayList<StationDistance>();
@@ -19,5 +21,12 @@ public class ClosestStations {
 			sorted = true;
 		}
 		return stations;
+	}
+	public Set<Line> getLines(){
+		Set<Line> set=new HashSet<Line>();
+		for(StationDistance d:stations) {
+			set.add(d.getLine());
+		}
+		return set;
 	}
 }

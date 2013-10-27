@@ -181,7 +181,7 @@ public enum Line {
 		return false;
 	}
 
-	public StationDistance findClosestStation(Spot spot) {
+	public StationDistance findClosestStation(Location spot) {
 		NamedLocation closest = null;
 		double closestDistance = Double.MAX_VALUE;
 		for (NamedLocation s : getStations()) {
