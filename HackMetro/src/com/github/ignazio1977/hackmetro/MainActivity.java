@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +20,7 @@ import com.github.ignazio1977.hackmetro.model.JourneyPlanner;
 import com.github.ignazio1977.hackmetro.model.Journeys;
 import com.github.ignazio1977.hackmetro.model.Search;
 import com.github.ignazio1977.hackmetro.model.enums.Stops;
+import com.google.common.base.Optional;
 
 public class MainActivity extends Activity {
 
@@ -93,11 +95,12 @@ public class MainActivity extends Activity {
 		if (search != null) {
 			JourneyPlanner planner = new JourneyPlanner();
 			Journeys computeJourneys = planner.computeJourneys(search);
+			Log.i("info", "heloooooo " + computeJourneys.toString());
 			journeysInfoList.clear();
 			for (Journey journey : computeJourneys.getJourneys()) {
+				Log.i("info", journey.toString());
 				journeysInfoList.add(journey.toString());
 			}
-			journeysListView = (ListView) findViewById(R.id.journeys_list);
 			((BaseAdapter) journeysListView.getAdapter())
 					.notifyDataSetChanged();
 		}
@@ -106,24 +109,28 @@ public class MainActivity extends Activity {
 	private Search createSearch() {
 		EditText from = (EditText) findViewById(R.id.from);
 		String start = from.getText().toString();
+		System.out.println(start);
 		EditText to = (EditText) findViewById(R.id.to);
 		String end = to.getText().toString();
+		System.out.println(end);
 
 		if (start != null && !start.isEmpty() && !start.equals(end)
 				&& end != null && !end.isEmpty()) {
 			Stops actualStart = null;
 			Stops actualEnd = null;
 			for (Stops s : Stops.values()) {
-				if (s.getName().equals(start)) {
+				if (s.getName().get().equals(start)) {
 					actualStart = s;
 				}
-				if (s.getName().equals(end)) {
+				if (s.getName().get().equals(end)) {
 					actualEnd = s;
 				}
 			}
 			Search search = new Search();
 			search.setStart(actualStart);
 			search.setDestination(actualEnd);
+			// XXX: This needs to change
+			search.setStartTime(Optional.of("06:20"));
 			return search;
 		} else {
 			return null;
